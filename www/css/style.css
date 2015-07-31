@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+#map {
+  min-height: 500px;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.align-center {
+  text-align: center;
+}
