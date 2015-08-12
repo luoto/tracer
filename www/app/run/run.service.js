@@ -1,5 +1,5 @@
 angular.module('tracer')
-  .factory('runFactory', ['$ionicPlatform', '$cordovaGeolocation', 'runModel', '$http', function($ionicPlatform, $cordovaGeolocation, runModel, $http) {
+  .factory('runFactory', ['$ionicPlatform', '$cordovaGeolocation', 'runModel', '$http', '$interval', function($ionicPlatform, $cordovaGeolocation, runModel, $http, $interval) {
 
     // stores user path [lat, long pairs]
     var pathCoordinates = [];
@@ -29,13 +29,14 @@ angular.module('tracer')
         });
     });
 
-    var intervalID = null;
+    var intervalID;
 
 
     // service methods
     return {
+
       startWatch: function() {
-        intervalID = setInterval(function() {
+        intervalID = $interval(function() {
           $cordovaGeolocation
             .getCurrentPosition(posOptions)
             .then(function (position) {
@@ -49,12 +50,15 @@ angular.module('tracer')
             });
         }, 1000);
       },
-      stopWatch: function() {
-        clearInterval(intervalID);
-        intervalID = null;
-      },
-      reset: function() {
 
+      stopWatch: function() {
+        if(angular.isDefined(intervalID)) {
+          $interval.cancel(intervalID);
+          intervalID = undefined;
+        }
+      },
+
+      reset: function() {
         $cordovaGeolocation
           .getCurrentPosition(posOptions)
           .then(function (position) {
@@ -66,8 +70,8 @@ angular.module('tracer')
           }, function(err) {
             // error
           });
-
       },
+
       getPath: function() {
         return pathCoordinates;
       }
