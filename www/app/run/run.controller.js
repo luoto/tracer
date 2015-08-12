@@ -11,7 +11,7 @@ angular.module('tracer')
     counter = $interval(function() {
       $scope.elapsedTime += 1;
     }, 1000);
-  }
+  };
 
   $scope.stop = function() {
     if(angular.isDefined(counter)) {
@@ -19,7 +19,7 @@ angular.module('tracer')
       counter = undefined;
     }
     runFactory.stopWatch();
-  }
+  };
 
   $scope.save = function() {
     $scope.stop();
@@ -31,7 +31,8 @@ angular.module('tracer')
 
     runModel.addLog(newLog);
     runFactory.reset();
-  }
+    $scope.elapsedTime = 0;
+  };
 
   $scope.$on('$destroy', function() {
     $scope.stop();
