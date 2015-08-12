@@ -6,14 +6,8 @@ angular.module('tracer')
 
   var counter;
 
-  var time = {
-    sec: 0,
-    min: 0,
-    hour: 0
-  }
-
   $scope.start = function() {
-    console.log('started');
+    runFactory.startWatch();
     counter = $interval(function() {
       $scope.elapsedTime += 1;
     }, 1000);
@@ -23,8 +17,8 @@ angular.module('tracer')
     if(angular.isDefined(counter)) {
       $interval.cancel(counter);
       counter = undefined;
-      runFactory.stopWatch();
     }
+    runFactory.stopWatch();
   }
 
   $scope.save = function() {
@@ -36,14 +30,6 @@ angular.module('tracer')
     }
 
     runModel.addLog(newLog);
-
-    // reset to intial state
-    time = {
-      sec: 0,
-      min: 0,
-      hour: 0
-    };
-
     runFactory.reset();
   }
 
