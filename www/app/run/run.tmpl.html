@@ -1,14 +1,21 @@
-<ion-view view-title="Controls">
+<ion-view view-title="Run">
   <ion-content>
     <div class="row no-padding">
       <div class="col no-padding">
         <div id="map"></div>
       </div>
     </div>
+    <div class="row no-padding">
+      <div class="button-bar">
+        <a class="button button-balanced" ng-click="start()">Start</a>
+        <a class="button button-assertive" ng-click="stop()">Stop</a>
+        <a class="button button-dark" ng-click="save()">Save</a>
+      </div>
+    </div>
     <div class="row">
-      <div class="col col-33 align-center"><button class="button">Start</button></div>
-      <div class="col col-33 align-center"><p>{{2 + 2}}</p></div>
-      <div class="col col-33 align-center"><button class="button">Stop</button></div>
+      <div class="col center-text top-margin">
+        <h1>{{elapsedTime}}</h1>
+      </div>
     </div>
   </ion-content>
 </ion-view>

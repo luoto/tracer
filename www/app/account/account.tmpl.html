@@ -1,0 +1,21 @@
+<ion-view view-title="Account">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Username" ng-model="user.username">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="user.password">
+      </label>
+    </div>
+    <div class="row">
+      <button class="button button-block button-positive" ng-click="signIn()">Sign In</button>
+    </div>
+    <div class="row">
+      <button class="button button-block button-assertive" ng-click="signOut()">Sign Out</button>
+    </div>
+    <div class="row">
+      <button class="button button-block button-positive" ng-click="openModal()">Create Account</button>
+    </div>
+  </ion-content>
+</ion-view>

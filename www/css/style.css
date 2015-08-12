@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 #map {
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .no-padding {
@@ -9,4 +9,16 @@
 
 .align-center {
   text-align: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.top-margin {
+  margin-top: 2em;
+}
+
+.hidden {
+  display: none;
 }
