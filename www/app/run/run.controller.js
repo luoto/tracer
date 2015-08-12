@@ -30,6 +30,7 @@ angular.module('tracer')
     }
 
     runModel.addLog(newLog);
+
     runFactory.reset();
     $scope.elapsedTime = 0;
   };

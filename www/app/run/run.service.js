@@ -31,11 +31,24 @@ angular.module('tracer')
 
     var intervalID;
 
-
     // service methods
     return {
 
       startWatch: function() {
+        // reset
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            var lat  = position.coords.latitude;
+            var long = position.coords.longitude;
+            map.setView([lat, long], 15);
+            marker.setLatLng([lat, long]);
+            pathLine.setLatLngs([[lat, long]]);
+          }, function(err) {
+            // error
+          });
+
+        // start
         intervalID = $interval(function() {
           $cordovaGeolocation
             .getCurrentPosition(posOptions)
@@ -59,20 +72,7 @@ angular.module('tracer')
       },
 
       reset: function() {
-        $cordovaGeolocation
-          .getCurrentPosition(posOptions)
-          .then(function (position) {
-            var lat  = position.coords.latitude;
-            var long = position.coords.longitude;
-            map.setView([lat, long], 15);
-            marker.setLatLng([lat, long]);
-            pathLine.setLatLngs([[lat, long]]);
-          }, function(err) {
-            // error
-          });
-
         pathCoordinates = [];
-        
       },
 
       getPath: function() {
