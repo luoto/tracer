@@ -70,6 +70,9 @@ angular.module('tracer')
           }, function(err) {
             // error
           });
+
+        pathCoordinates = [];
+        
       },
 
       getPath: function() {
