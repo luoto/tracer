@@ -1,4 +1,4 @@
-<ion-view view-title="Logs">
+<ion-view view-title="Logs" ng-init="refresh()">
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()"></ion-refresher>
     <div class="card" ng-repeat="log in logs">

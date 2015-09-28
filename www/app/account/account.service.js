@@ -6,7 +6,8 @@ angular.module('tracer')
 
     return {
       createUser: function(username, email, password) {
-        $http.post('http://localhost:3000/api/user/signup', {username: username, email: email, password: password})
+        $http.post('http://localhost:3000/api/user/signup',
+        {username: username, email: email, password: password})
           .then(function(res) {
             $location.path('tab/run');
 

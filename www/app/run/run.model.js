@@ -46,6 +46,9 @@ angular.module('tracer')
       getLog: function() {
         pullData();
         return logs;
+      },
+      clearLogs: function() {
+        logs = [];
       }
     };
 

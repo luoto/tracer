@@ -1,5 +1,5 @@
 angular.module('tracer')
-  .controller('AccountCtrl', ['$scope', 'StartService', '$ionicModal', '$ionicPopup', function($scope, StartService, $ionicModal, $ionicPopup) {
+  .controller('AccountCtrl', ['$scope', 'StartService', '$ionicModal', '$ionicPopup', 'runModel', function($scope, StartService, $ionicModal, $ionicPopup, runModel) {
 
     $ionicModal.fromTemplateUrl('app/account/account.modal.html', {
       scope: $scope,
@@ -21,15 +21,15 @@ angular.module('tracer')
     });
 
     $scope.user = {
-      username: undefined,
-      password: undefined,
+      username: "",
+      password: "",
     };
 
     $scope.create = {
-      username: undefined,
-      password: undefined,
-      email: undefined
-    }
+      username: "",
+      password: "",
+      email: ""
+    };
 
     $scope.success = false;
     $scope.error = false;
@@ -48,19 +48,41 @@ angular.module('tracer')
     };
 
     $scope.createAccount = function() {
-      if($scope.create.username === undefined || $scope.create.password === undefined || $scope.create.email === undefined) {
+      if($scope.create.username === "" || $scope.create.password === "" || $scope.create.email === "") {
+        (function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Please fill in all fields'
+          });
+        })();
         $scope.hidden = false;
         return;
       }
-
-      if (StartService.createUser($scope.create.username, $scope.create.email, $scope.create.password)) {
+      else if (StartService.createUser($scope.create.username, $scope.create.email, $scope.create.password)) {
+        (function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Username or email is already in use'
+          });
+        })();
         $scope.hidden = false;
         return;
+      }
+      else {
+        // (function() {
+        //   var alertPopup = $ionicPopup.alert({
+        //     title: 'Success',
+        //     template: 'You are now logged in as ' + $scope.create.username
+        //   });
+        // })();
+        //
+        // return;
       }
     };
 
     $scope.signOut = function() {
       StartService.signOut();
+      runModel.clearLogs();
     }
 
   }]);

@@ -40,6 +40,7 @@ angular.module('tracer', ['ionic', 'ngCordova', 'ngCookies'])
 
   .state('tab.log', {
       url: '/log',
+      cache: false,
       views: {
         'tab-log': {
           templateUrl: 'app/log/log.tmpl.html',
